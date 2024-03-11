@@ -14,8 +14,23 @@ public class CustomerServiceImpl implements ICustomerService{
     private ICustomerDao customerDao;
 
     @Override
+    public CustomerEntity save(CustomerEntity customer) {
+        return customerDao.save(customer);
+    }
+    
+    @Override
+    public CustomerEntity findById(Long id) {
+        return customerDao.findById(id).orElse(null);
+    }
+    
+    @Override
     public List<CustomerEntity> findAll() {
         return (List<CustomerEntity>) customerDao.findAll();
+    }
+
+    @Override
+    public void delete(Long id) {
+        customerDao.deleteById(id);
     }
 
 }
