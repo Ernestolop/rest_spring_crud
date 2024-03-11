@@ -98,13 +98,15 @@ public class CustomerRestController {
 
     @DeleteMapping("/customers/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long id) {
-       try {
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        try {
             customerService.delete(id);
+            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
         } catch (DataAccessException e) {
             Map<String, String> response = new HashMap<>();
             response.put("message", "Error al realizar el delete en la base de datos");
             response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String, String>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
