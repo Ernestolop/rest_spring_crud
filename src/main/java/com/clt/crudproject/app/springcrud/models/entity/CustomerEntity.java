@@ -10,6 +10,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
 import java.util.Date;
 
 @Entity
@@ -20,12 +24,20 @@ public class CustomerEntity implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+    @NotEmpty(message = "El número de cédula no puede estar vacío")
     @Column(nullable = false, unique = true)
     private Long ci;
+    @NotEmpty(message = "El nombre no puede estar vacío")
+    @Size(min = 4, max = 50, message = "El nombre debe tener entre 4 y 50 caracteres")
     @Column(nullable = false)
     private String name;
+    @NotEmpty(message = "El apellido no puede estar vacío")
+    @Size(min = 4, max = 50, message = "El apellido debe tener entre 4 y 50 caracteres")
     @Column(name = "last_name")
     private String lastName;
+    @NotEmpty(message = "El email no puede estar vacío")
+    @Email(message = "El email no tiene un formato válido")
+    @Size(min = 5, max = 100)
     @Column(nullable = false, unique = true)
     private String email;
     @Column(name = "created_at", updatable = false)

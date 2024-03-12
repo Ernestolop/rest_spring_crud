@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +26,6 @@ public class CustomerRestController {
     private ICustomerService customerService;
 
     @PostMapping("/customers")
-    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> save(@RequestBody CustomerEntity customer) {
         try {
             CustomerEntity customerNew = customerService.save(customer);
@@ -73,7 +71,6 @@ public class CustomerRestController {
     }
 
     @PutMapping("/customers/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
     public  ResponseEntity<?> update(@RequestBody CustomerEntity customer, @PathVariable Long id) {
         try {
             CustomerEntity customerActual = customerService.findById(id);
@@ -97,11 +94,12 @@ public class CustomerRestController {
     }
 
     @DeleteMapping("/customers/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<?> delete(@PathVariable Long id) {
         try {
             customerService.delete(id);
-            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Cliente eliminado con éxito");
+            return new ResponseEntity<Map<String, String>>(response, HttpStatus.OK);
         } catch (DataAccessException e) {
             Map<String, String> response = new HashMap<>();
             response.put("message", "Error al realizar el delete en la base de datos");
