@@ -26,9 +26,9 @@ Puedes encontrar la documentación de la API en el siguiente enlace: [Documentac
 ## Generar build de producción y correr el servidor
 
 1. **Genera el jar**
-    En la raiz del proyecto, ejecuta el siguiente comando:
+    En la raiz del proyecto, ejecuta el siguiente script de maven:
     ```bash
-    mvn package
+    ./mvnw package
 
 2. **Iniciar la el servidor**
     En el directorio target, verifica el nombre del jar generado, reemplazalo en el siguiente comando y ejecutalo
