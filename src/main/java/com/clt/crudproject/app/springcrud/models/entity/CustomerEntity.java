@@ -12,6 +12,7 @@ import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.util.Date;
@@ -24,7 +25,7 @@ public class CustomerEntity implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    @NotEmpty(message = "El número de cédula no puede estar vacío")
+    @NotNull(message = "El número de cédula no puede estar vacío")
     @Column(nullable = false, unique = true)
     private Long ci;
     @NotEmpty(message = "El nombre no puede estar vacío")
