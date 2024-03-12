@@ -13,7 +13,7 @@ Puedes encontrar la documentación de la API en el siguiente enlace: [Documentac
    Abre una terminal y ejecuta el siguiente comando:
 
    ```bash
-   git clone https://github.com/Ernestolop/JavaServletLab.git
+   git clone https://github.com/Ernestolop/rest_spring_crud.git
 
 2. **Modifica el aplication.properties**
     Crea una base de datos local y establece las credenciales en el aplication.properties
