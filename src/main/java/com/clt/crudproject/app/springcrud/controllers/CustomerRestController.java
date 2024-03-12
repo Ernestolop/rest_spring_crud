@@ -154,7 +154,6 @@ public class CustomerRestController {
         HttpStatus status = null;
 
         try {
-            // obtener el cliente
             CustomerEntity customer = customerService.findById(id);
             if (customer == null) {
                 response.put("message", "Verifique el id ingresado");
